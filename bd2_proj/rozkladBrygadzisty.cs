@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace bd2_proj
 {
-    public partial class Brygadzista : Form
+    public partial class rozkladBrygadzisty : UserControl
     {
-        public Brygadzista()
+        public rozkladBrygadzisty()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
