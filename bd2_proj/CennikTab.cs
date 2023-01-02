@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace bd2_proj
 {
-    public partial class Administrator : Form
+    public partial class CennikTab : UserControl
     {
-        public Administrator()
+        public CennikTab()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

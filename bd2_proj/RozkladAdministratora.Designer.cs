@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,10 +121,20 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "godzina";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 251);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Wyszukaj";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // RozkladAdministratora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
@@ -152,5 +163,6 @@
         private Label label3;
         private TextBox textBox1;
         private Label label4;
+        private Button button1;
     }
 }

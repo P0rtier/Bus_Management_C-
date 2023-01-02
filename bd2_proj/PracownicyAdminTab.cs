@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace bd2_proj
 {
-    public partial class Administrator : Form
+    public partial class PracownicyAdminTab : UserControl
     {
-        public Administrator()
+        public PracownicyAdminTab()
         {
             InitializeComponent();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void PracownicyAdminTab_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -23,6 +33,16 @@ namespace bd2_proj
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
