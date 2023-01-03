@@ -1,0 +1,32 @@
+DROP USER IF EXISTS `Administrator`;
+CREATE USER `Administrator` IDENTIFIED BY '123';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.* TO `Administrator`;
+
+DROP USER IF EXISTS `Brygadzista`;
+CREATE USER `Brygadzista` IDENTIFIED BY '123';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`brygada` TO 'Brygadzista';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`rozklad_jazdy_brygadzisty` TO 'Brygadzista';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`fragment_kursu` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`pojazd` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`brygadzista` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`kierowca` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`cennik` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`adres` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`ulica` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`miejscowosc` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`linia_autobusowa` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`przystanek` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`brygadzista_rozklad_jazdy_administratora_view` TO 'Brygadzista';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`brygadzista_rozklad_jazdy_brygadzisty_view` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`brygadzista_pracownik_view` TO 'Brygadzista';
+GRANT SELECT ON `mpk_bd2`.`kierowca_rozklad_jazdy_brygadzisty_view` TO 'Brygadzista';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`kierowca_brygada_view` TO 'Brygadzista';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`brygadzista_brygada_view` TO 'Brygadzista';
+
+DROP USER IF EXISTS `Kierowca`;
+CREATE USER `Kierowca` IDENTIFIED BY '123';
+GRANT SELECT ON `mpk_bd2`.`pojazd` TO `Kierowca`;
+GRANT SELECT ON `mpk_bd2`.`cennik` TO `Kierowca`;
+GRANT SELECT ON `mpk_bd2`.`kierowca_brygada_view` TO `Kierowca`;
+GRANT SELECT ON `mpk_bd2`.`kierowca_rozklad_jazdy_brygadzisty_view` TO `Kierowca`;
+GRANT SELECT ON `mpk_bd2`.`kierowca_rozklad_jazdy_administratora_view` TO `Kierowca`;
