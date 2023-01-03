@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,10 @@ namespace bd2_proj
         public Administrator()
         {
             InitializeComponent();
+
+            string connection = "datasource=localhost;port=3306;username=Administrator;password=123";
+            string table = "administrator_rozklad_jazdy_administratora_view";
+            this.rozkladAdministratora1.init(new MySqlConnection(connection), table);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -23,6 +28,11 @@ namespace bd2_proj
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rozkladAdministratora1_Load(object sender, EventArgs e)
         {
 
         }

@@ -87,6 +87,7 @@
             this.rozkladAdministratora1.Name = "rozkladAdministratora1";
             this.rozkladAdministratora1.Size = new System.Drawing.Size(789, 420);
             this.rozkladAdministratora1.TabIndex = 0;
+            this.rozkladAdministratora1.Load += new System.EventHandler(this.rozkladAdministratora1_Load);
             // 
             // Pracownicy
             // 
