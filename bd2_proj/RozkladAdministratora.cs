@@ -21,6 +21,21 @@ namespace bd2_proj
             this.mySqlConnection = mySqlConnection;
             this.table = table;
 
+            try
+            {
+                string query = "select * from `mpk_bd2`.`" + table + "`";
+                MySqlCommand command = new MySqlCommand(query, mySqlConnection);
+                MySqlDataAdapter mySqlAdapter = new MySqlDataAdapter();
+                mySqlAdapter.SelectCommand = command;
+                DataTable dTable = new DataTable();
+                mySqlAdapter.Fill(dTable);
+                dataGridView1.DataSource = dTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             updateComboBoxes();
         }
 

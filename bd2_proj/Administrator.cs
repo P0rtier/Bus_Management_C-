@@ -19,7 +19,9 @@ namespace bd2_proj
 
             string connection = "datasource=localhost;port=3306;username=Administrator;password=123";
             string table = "administrator_rozklad_jazdy_administratora_view";
+            string table2 = "administrator_pracownik_view";
             this.rozkladAdministratora1.init(new MySqlConnection(connection), table);
+            this.pracownicyAdminTab1.init(new MySqlConnection(connection), table2);
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,80 @@ namespace bd2_proj
 {
     public partial class PracownicyAdminTab : UserControl
     {
+
+        private string table;
+        private MySqlConnection mySqlConnection;
+
+        public void init(MySqlConnection mySqlConnection, string table)
+        {
+            this.mySqlConnection = mySqlConnection;
+            this.table= table;
+
+            try
+            {
+                string Query = "select * from `mpk_bd2`.`" + table + "`";
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, mySqlConnection);
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+                DataTable dTable = new DataTable();
+                MyAdapter.Fill(dTable);
+                dataGridView1.DataSource = dTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void updateDataGrid()
+        {
+            try
+            {
+                string Query = "select * from `mpk_bd2`.`" + table + "`";
+
+                var surname = this.textBox1.Text;
+                var name = this.textBox2.Text;
+                var id = this.textBox3.Text;
+
+                int count = 0;
+
+                if(surname.Length > 0 || name.Length > 0 || id.Length > 0)
+                {
+                    Query += " where";
+                    if(surname.Length > 0)
+                    {
+                        Query += " nazwisko=\"" + surname + "\"";
+                        count++;
+                    }
+                    if(name.Length > 0)
+                    {
+                        if (count > 0) Query += " and";
+                        Query += " imie=\"" + name + "\"";
+                        count++;
+                    }
+                    if(id.Length > 0)
+                    {
+                        if (count > 0) Query += " and";
+                        Query += " id_pracownik=" + id;
+                        count++;
+                    }
+                }
+
+                Query += ";";
+                MySqlCommand MyCommand = new MySqlCommand(Query, mySqlConnection);
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand;
+                DataTable dTable = new DataTable();
+                MyAdapter.Fill(dTable);
+                dataGridView1.DataSource = dTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         public PracownicyAdminTab()
         {
             InitializeComponent();
@@ -44,7 +119,7 @@ namespace bd2_proj
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            updateDataGrid();
         }
     }
 }
