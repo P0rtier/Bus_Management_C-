@@ -47,11 +47,11 @@ namespace bd2_proj
 
         private void updateComboBoxes()
         {
-            updateComboBox(this.comboBox1, "numer_rejestracyjny");
-            updateComboBox(this.comboBox2, "numer_vin");
+            updateComboBox(this.comboBox1, "nr_rejestracyjny");
+            updateComboBox(this.comboBox2, "nr_vin");
             updateComboBox(this.comboBox3, "id_brygada");
             updateComboBox(this.comboBox4, "id_pojazd");
-            updateComboBox(this.comboBox5, "maksymalna_liczba_pasażerów");
+            updateComboBox(this.comboBox5, "maks_liczba_pasazerow");
         }
 
         private void updateDataGrid()
@@ -71,40 +71,40 @@ namespace bd2_proj
 
                 if (reje.Length > 0 || vin.Length > 0 || bryg.Length > 0 || poj.Length > 0 || maks.Length > 0 || date.Text.Length > 0)
                 {
-                    query += " where ";
+                    query += " where";
                     if (reje.Length > 0)
                     {
-                        query += "nazwa_przystanek=\"" + reje + "\"";
+                        query += " nr_rejestracyjny=\"" + reje + "\"";
                         count++;
                     }
                     if (vin.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "nr_linii=" + vin;
+                        query += "nr_vin=\"" + vin + "\"";
                         count++;
                     }
                     if (bryg.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "nr_linii=" + bryg;
+                        query += "id_brygada=" + bryg;
                         count++;
                     }
                     if (poj.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "nr_linii=" + poj;
+                        query += "id_pojazd=" + poj;
                         count++;
                     }
                     if (maks.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "nr_linii=" + maks;
+                        query += "maks_liczba_pasazerow=" + maks;
                         count++;
                     }
                     if (date.Text.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "data_odjazdu >= '" + date.Text + "'";
+                        query += "przeglad_techniczny <= '" + date.Text + "'";
                         count++;
                     }
                 }
@@ -115,6 +115,24 @@ namespace bd2_proj
                 mySqlAdapter.SelectCommand = command;
                 DataTable dTable = new DataTable();
                 mySqlAdapter.Fill(dTable);
+                dataGridView1.DataSource = dTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void updateDataGrid2()
+        {
+            try
+            {
+                string Query = "select * from `mpk_bd2`.`pojazd`;";
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, mySqlConnection);
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+                DataTable dTable = new DataTable();
+                MyAdapter.Fill(dTable);
                 dataGridView1.DataSource = dTable;
             }
             catch (Exception ex)
@@ -150,14 +168,14 @@ namespace bd2_proj
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            updateDataGrid();
-        }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            updateDataGrid();
         }
     }
 }

@@ -64,11 +64,11 @@ INSERT INTO `mpk_bd2`.`linia_autobusowa` (`id_linia_autobusowa`, `typ_linii`) VA
 INSERT INTO `mpk_bd2`.`linia_autobusowa` (`id_linia_autobusowa`, `typ_linii`) VALUES ('5', 'm');
 
 INSERT INTO `mpk_bd2`.`pojazd` (`id_pojazd`, `przeglad_techniczny`, `maks_liczba_pasazerow`, `nr_rejestracyjny`, `nr_vin`, `id_brygada`) VALUES 
-('1', '2022-05-05 00:00:00.000000', '120', 'DW54G43', 'GBV4444', '1'),
-('2', '2022-04-11 00:00:00.000000', '120', 'DWJD4JD', 'KLM6643', '1'),
-('3', '2022-02-02 00:00:00.000000', '145', 'DW515HY', 'H6G33JK', '1'),
-('4', '2021-06-13 00:00:00.000000', '130', 'DW44TH3', 'JDV5498', '2'),
-('5', '2022-03-11 00:00:00.000000', '130', 'DW99NBS', 'QCQ5462', '2');
+('1', '2022-05-05 00:00:00', '120', 'DW54G43', 'GBV4444', '1'),
+('2', '2022-04-11 00:00:00', '120', 'DWJD4JD', 'KLM6643', '1'),
+('3', '2022-02-02 00:00:00', '145', 'DW515HY', 'H6G33JK', '1'),
+('4', '2021-06-13 00:00:00', '130', 'DW44TH3', 'JDV5498', '2'),
+('5', '2022-03-11 00:00:00', '130', 'DW99NBS', 'QCQ5462', '2');
 
 INSERT INTO `mpk_bd2`.`przystanek` (`id_przystanek`, `nazwa_przystanek`, `id_adres`) VALUES 
 ('1', 'Libieta', '5'),
