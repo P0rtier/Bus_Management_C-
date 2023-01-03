@@ -21,6 +21,7 @@ namespace bd2_proj
             this.rozkladAdministratora1.init(connection, "brygadzista_rozklad_jazdy_administratora_view");
             this.rozkladBrygadzisty1.init(connection, "brygadzista_rozklad_jazdy_brygadzisty_view");
             this.brygady1.init(connection, "Brygadzista_brygada_view");
+            this.pojazdy1.init(connection, "Brygadzista_pojazd_view");
         }
 
         private void label1_Click(object sender, EventArgs e)

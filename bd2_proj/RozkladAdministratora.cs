@@ -134,5 +134,10 @@ namespace bd2_proj
         {
             updateDataGrid();
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
