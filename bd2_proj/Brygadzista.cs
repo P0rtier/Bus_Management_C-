@@ -20,6 +20,7 @@ namespace bd2_proj
             var connection = new MySqlConnection("datasource=localhost;port=3306;username=Brygadzista;password=123");
             this.rozkladAdministratora1.init(connection, "brygadzista_rozklad_jazdy_administratora_view");
             this.rozkladBrygadzisty1.init(connection, "brygadzista_rozklad_jazdy_brygadzisty_view");
+            this.brygady1.init(connection, "Brygadzista_brygada_view");
         }
 
         private void label1_Click(object sender, EventArgs e)
