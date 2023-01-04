@@ -9,13 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//        string query = $"insert into `mpk_bd2`.`cennik` (cena, rodzaj, typ_przejazdu, id_administrator) values('{dataGridView1.Rows[e.RowIndex].Cells["cena"].Value}','{dataGridView1.Rows[e.RowIndex].Cells["rodzaj"].Value}','{dataGridView1.Rows[e.RowIndex].Cells["typ_przejazdu"].Value}','{dataGridView1.Rows[e.RowIndex].Cells["id_administrator"].Value}');";
-//        string query = $"update `mpk_bd2`.`cennik` set cena = '{dataGridView1.Rows[e.RowIndex].Cells["cena"].Value}', rodzaj='{dataGridView1.Rows[e.RowIndex].Cells["rodzaj"].Value}', typ_przejazdu='{dataGridView1.Rows[e.RowIndex].Cells["typ_przejazdu"].Value}', id_administrator='{dataGridView1.Rows[e.RowIndex].Cells["id_administrator"].Value}';";
-
-
-
-
-
 namespace bd2_proj
 {
     public partial class CennikManageForm : Form
