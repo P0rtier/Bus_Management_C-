@@ -19,7 +19,7 @@ namespace bd2_proj
         {
             InitializeComponent();
 
-            string connection = "datasource=localhost;port=3306;username=Administrator;password=123";
+            string connection = "datasource=localhost;port=3306;database=mpk_bd2;username=Administrator;password=123";
             connections = new MySqlConnection(connection);
             string table = "administrator_rozklad_jazdy_administratora_view";
             string table2 = "administrator_pracownik_view";
