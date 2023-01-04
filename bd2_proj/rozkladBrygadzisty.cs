@@ -102,7 +102,7 @@ namespace bd2_proj
         {
             InitializeComponent();
             this.dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
         }
 
         private void label2_Click(object sender, EventArgs e)

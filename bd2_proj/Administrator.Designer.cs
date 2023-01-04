@@ -35,6 +35,7 @@
             this.Pracownicy = new System.Windows.Forms.TabPage();
             this.pracownicyAdminTab1 = new bd2_proj.PracownicyAdminTab();
             this.Cennik = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.cennikTab1 = new bd2_proj.CennikTab();
             this.tabControl1.SuspendLayout();
             this.RozkladJazdy.SuspendLayout();
@@ -112,6 +113,7 @@
             // 
             // Cennik
             // 
+            this.Cennik.Controls.Add(this.button2);
             this.Cennik.Controls.Add(this.cennikTab1);
             this.Cennik.Location = new System.Drawing.Point(4, 24);
             this.Cennik.Name = "Cennik";
@@ -121,6 +123,19 @@
             this.Cennik.Text = "Cennik";
             this.Cennik.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(0, 389);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(792, 31);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Zarządzaj";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // cennikTab1
             // 
             this.cennikTab1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -128,7 +143,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cennikTab1.Location = new System.Drawing.Point(0, 0);
             this.cennikTab1.Name = "cennikTab1";
-            this.cennikTab1.Size = new System.Drawing.Size(792, 420);
+            this.cennikTab1.Size = new System.Drawing.Size(792, 383);
             this.cennikTab1.TabIndex = 0;
             // 
             // Administrator
@@ -157,5 +172,6 @@
         private Button button1;
         private PracownicyAdminTab pracownicyAdminTab1;
         private CennikTab cennikTab1;
+        private Button button2;
     }
 }

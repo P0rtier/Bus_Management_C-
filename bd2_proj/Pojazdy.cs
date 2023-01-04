@@ -71,10 +71,10 @@ namespace bd2_proj
 
                 if (reje.Length > 0 || vin.Length > 0 || bryg.Length > 0 || poj.Length > 0 || maks.Length > 0 || date.Text.Length > 0)
                 {
-                    query += " where";
+                    query += " where ";
                     if (reje.Length > 0)
                     {
-                        query += " nr_rejestracyjny=\"" + reje + "\"";
+                        query += "nr_rejestracyjny=\"" + reje + "\"";
                         count++;
                     }
                     if (vin.Length > 0)
@@ -104,7 +104,7 @@ namespace bd2_proj
                     if (date.Text.Length > 0)
                     {
                         if (count > 0) query += " and ";
-                        query += "przeglad_techniczny <= '" + date.Text + "'";
+                        query += "przeglad_techniczny <= \"" + date.Text + "\"";
                         count++;
                     }
                 }
@@ -145,7 +145,7 @@ namespace bd2_proj
         {
             InitializeComponent();
             this.dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -176,6 +176,11 @@ namespace bd2_proj
         private void button1_Click_1(object sender, EventArgs e)
         {
             updateDataGrid();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
