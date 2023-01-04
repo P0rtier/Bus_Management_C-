@@ -109,7 +109,9 @@ namespace bd2_proj
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var manage = new PracownicyManageForm();
+            manage.init(mySqlConnection);
+            manage.Show();
         }
 
         private void label5_Click(object sender, EventArgs e)
