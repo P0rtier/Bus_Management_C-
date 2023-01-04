@@ -53,3 +53,9 @@ INNER JOIN Pracownik as p ON k.id_pracownik=p.id_pracownik
 INNER JOIN Brygada as b ON k.id_brygada=b.id_brygada
 INNER JOIN Brygadzista as br ON b.id_brygadzista=br.id_brygadzista
 INNER JOIN Pracownik as brp ON br.id_pracownik=brp.id_pracownik;
+
+CREATE VIEW `Administrator_adresy_pracownikow_view` AS
+SELECT adr.id_adres, adr.nr_domu, adr.nr_lokalu, ul.nazwa_ulicy, miejsc.nazwa_miejscowosci
+FROM Adres AS adr
+INNER JOIN ulica as ul ON adr.id_ulica=ul.id_ulica
+	INNER JOIN miejscowosc as miejsc ON ul.id_miejscowosc=miejsc.id_miejscowosc;

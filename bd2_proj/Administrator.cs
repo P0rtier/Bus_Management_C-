@@ -25,6 +25,7 @@ namespace bd2_proj
             string table2 = "administrator_pracownik_view";
             this.rozkladAdministratora1.init(new MySqlConnection(connection), table);
             this.pracownicyAdminTab1.init(new MySqlConnection(connection), table2);
+            this.adminAdressTab1.init(connections);
 
 
         }
@@ -49,6 +50,16 @@ namespace bd2_proj
             var cennikManagement = new CennikManageForm();
             cennikManagement.init(connections);
             cennikManagement.Show();
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Administrator_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
