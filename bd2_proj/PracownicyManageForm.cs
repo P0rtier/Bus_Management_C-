@@ -50,6 +50,9 @@ namespace bd2_proj
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
 
             ID = 0;
         }
@@ -220,6 +223,66 @@ namespace bd2_proj
             MpkBdConnection.Close();
             clearData();
             updateCennikGrid();
+        }
+
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            dateTimePicker1.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+            textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+            textBox6.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
+
+
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var address_id = adressID();
+
+                MpkBdConnection.Open();
+                string query = $"update `mpk_bd2`.`pracownik` set imie = {(textBox1.Text == "" ? "NULL" : $"'{textBox1.Text}'")}, nazwisko= {(textBox2.Text == "" ? "NULL" : $"'{textBox2.Text}'")}, data_urodzenia= {(dateTimePicker1.Text == "" ? "NULL" : $"'{dateTimePicker1.Text}'")}, data_zatrudnienia = {(dateTimePicker2.Text == "" ? "NULL" : $"'{dateTimePicker2.Text}'")}, pesel= {(textBox3.Text == "" ? "NULL" : $"'{textBox3.Text}'")}, id_adres= {address_id} where id_pracownik={ID}";
+                MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
+                mySqlCommand.ExecuteReader();
+                MessageBox.Show("Updated Row!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MpkBdConnection.Close();
+            clearData();
+            updateCennikGrid();
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            if (ID != 0)
+            {
+                try
+                {
+                    MpkBdConnection.Open();
+                    MySqlCommand mySqlCommand = new MySqlCommand($"delete from `mpk_bd2`.`pracownik` where id_pracownik={ID};", MpkBdConnection);
+                    mySqlCommand.ExecuteReader();
+                    MessageBox.Show("Row Deleted!");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                MpkBdConnection.Close();
+                clearData();
+                updateCennikGrid();
+            }
         }
     }
 }
