@@ -35,11 +35,14 @@ FROM Kierowca as k
 INNER JOIN Pracownik as p ON k.id_pracownik=p.id_pracownik;
 
 CREATE VIEW `Administrator_pracownik_view` AS
-SELECT p.id_pracownik, p.imie, p.nazwisko, p.data_urodzenia, p.data_zatrudnienia, p.pesel, m.nazwa_miejscowosci, u.nazwa_ulicy, a.nr_domu, a.nr_lokalu
+SELECT p.id_pracownik, p.imie, p.nazwisko, p.data_urodzenia, p.data_zatrudnienia, p.pesel, m.nazwa_miejscowosci, u.nazwa_ulicy, a.nr_domu, a.nr_lokalu, kier.id_kierowca, bryg.id_brygadzista, admin.id_administrator
 FROM Pracownik as p
 INNER JOIN Adres as a ON p.id_adres=a.id_adres
 INNER JOIN Ulica as u ON a.id_ulica=u.id_ulica
-INNER JOIN Miejscowosc as m ON u.id_miejscowosc=m.id_miejscowosc;
+INNER JOIN Miejscowosc as m ON u.id_miejscowosc=m.id_miejscowosc
+LEFT JOIN Kierowca as kier on p.id_pracownik=kier.id_pracownik
+LEFT JOIN Brygadzista as bryg on p.id_pracownik=bryg.id_pracownik
+LEFT JOIN Administrator as admin on p.id_pracownik=admin.id_pracownik;
 
 CREATE VIEW `Brygadzista_pracownik_view` AS
 SELECT k.id_brygada, k.id_pracownik, p.imie, p.nazwisko

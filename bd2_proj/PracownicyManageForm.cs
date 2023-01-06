@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,9 @@ namespace bd2_proj
         private string table = "administrator_pracownik_view";
         MySqlConnection MpkBdConnection;
         int ID = 0;
+        int ID_kierowca = 0;
+        int ID_brygadzista = 0;
+        int ID_administrator = 0;
 
         public void init(MySqlConnection MpkBdConnection)
         {
@@ -53,6 +57,10 @@ namespace bd2_proj
             textBox5.Text = "";
             textBox6.Text = "";
             textBox7.Text = "";
+
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
 
             ID = 0;
         }
@@ -204,12 +212,85 @@ namespace bd2_proj
             return id;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addRole(string table, int id)
         {
+            if (roleID(table, id) != -1) return;
             try
             {
-                var address_id = adressID();
+                MpkBdConnection.Open();
+                string query = $"insert into `mpk_bd2`.`{table}` (id_pracownik) values({id});";
+                MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
+                mySqlCommand.ExecuteReader();
+                MessageBox.Show("Inserted Row!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MpkBdConnection.Close();
+        }
+        private void removeRole(string table, int id)
+        {
+            if (roleID(table, id) == -1) return;
+            try
+            {
+                MpkBdConnection.Open();
+                string query = $"delete from `mpk_bd2`.`{table}` where id_pracownik={id};";
+                MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
+                mySqlCommand.ExecuteReader();
+                MessageBox.Show("Deleted Row!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MpkBdConnection.Close();
+        }
 
+        private int roleID(string role, int user_id)
+        {
+            int id = -1;
+
+            var id_query = $"select * from `mpk_bd2`.`{role}` where id_pracownik = {user_id};";
+            var res = getQueryResult(id_query);
+
+            if (res.Rows.Count > 0)
+            {
+                id = Int32.Parse(res.Rows[0][0].ToString());
+            }
+
+            return id;
+        }
+
+        private int kierowcaID(int id)
+        {
+            return roleID("kierowca", id);
+        }
+        private int brygadzistaID(int id)
+        {
+            return roleID("brygadzista", id);
+        }
+        private int administratorID(int id)
+        {
+            return roleID("administrator", id);
+        }
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var address_id = adressID();
+
+            var id_query = $"select id_pracownik from `mpk_bd2`.`pracownik` where imie={(textBox1.Text == "" ? "NULL" : $"'{textBox1.Text}'")} and nazwisko={(textBox2.Text == "" ? "NULL" : $"'{textBox2.Text}'")} and pesel={(textBox3.Text == "" ? "NULL" : $"'{textBox3.Text}'")} and id_adres={address_id};";
+            var res = getQueryResult(id_query);
+
+            if (res.Rows.Count > 0)
+            {
+                MessageBox.Show("ten pracownik już istnieje");
+                return;
+            }
+
+            try
+            {
                 MpkBdConnection.Open();
                 string query = $"insert into `mpk_bd2`.`pracownik` (imie, nazwisko, data_urodzenia, data_zatrudnienia, pesel, id_adres) values({(textBox1.Text == "" ? "NULL" : $"'{textBox1.Text}'")},{(textBox2.Text == "" ? "NULL" : $"'{textBox2.Text}'")},{(dateTimePicker1.Text == "" ? "NULL" : $"'{dateTimePicker1.Text}'")},{(dateTimePicker2.Text == "" ? "NULL" : $"'{dateTimePicker2.Text}'")}, {(textBox3.Text == "" ? "NULL" : $"'{textBox3.Text}'")}, {address_id});";
                 MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
@@ -221,6 +302,29 @@ namespace bd2_proj
                 MessageBox.Show("INSERT " + ex.Message);
             }
             MpkBdConnection.Close();
+
+            res = getQueryResult(id_query);
+
+            if (res.Rows.Count > 0)
+            {
+                var id_pracownik = Int32.Parse(res.Rows[0][0].ToString());
+
+                if (checkBox1.Checked)
+                {
+                    addRole("kierowca", id_pracownik);
+                }
+
+                if (checkBox2.Checked)
+                {
+                    addRole("brygadzista", id_pracownik);
+                }
+
+                if (checkBox3.Checked)
+                {
+                    addRole("administrator", id_pracownik);
+                }
+            }
+
             clearData();
             updateCennikGrid();
         }
@@ -228,6 +332,14 @@ namespace bd2_proj
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            ID_kierowca = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString().Length > 0 ? Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString()) : 0;
+            ID_brygadzista = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString().Length > 0 ? Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString()) : 0;
+            ID_administrator = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString().Length > 0 ? Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString()) : 0;
+
+            checkBox1.Checked = ID_kierowca > 0;
+            checkBox2.Checked = ID_brygadzista > 0;
+            checkBox3.Checked = ID_administrator > 0;
+
             textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             dateTimePicker1.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -252,13 +364,23 @@ namespace bd2_proj
                 MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
                 mySqlCommand.ExecuteReader();
                 MessageBox.Show("Updated Row!");
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             MpkBdConnection.Close();
+
+            var setRole = (string role, int id, bool set) =>
+            {
+                if (set) addRole(role, id);
+                else removeRole(role, id);
+            };
+
+            setRole("kierowca", ID, checkBox1.Checked);
+            setRole("brygadzista", ID, checkBox2.Checked);
+            setRole("administrator", ID, checkBox3.Checked);
+
             clearData();
             updateCennikGrid();
         }
@@ -267,6 +389,10 @@ namespace bd2_proj
         {
             if (ID != 0)
             {
+                removeRole("kierowca", ID);
+                removeRole("brygadzista", ID);
+                removeRole("administrator", ID);
+
                 try
                 {
                     MpkBdConnection.Open();

@@ -1,6 +1,7 @@
 DROP USER IF EXISTS `Administrator`;
 CREATE USER `Administrator` IDENTIFIED BY '123';
 GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.* TO `Administrator`;
+GRANT create user on *.* to 'Administrator' WITH grant option;
 
 DROP USER IF EXISTS `Brygadzista`;
 CREATE USER `Brygadzista` IDENTIFIED BY '123';
