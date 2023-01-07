@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace bd2_proj
 {
@@ -245,6 +246,23 @@ namespace bd2_proj
             if (res.Rows.Count > 0)
             {
                 var id_pracownik = Int32.Parse(res.Rows[0][0].ToString());
+
+                try
+                {
+                    MpkBdConnection.Open();
+                    string query = $"CREATE USER `{id_pracownik}` IDENTIFIED BY '123';";
+                    MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
+                    mySqlCommand.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                MpkBdConnection.Close();
+
+                var passwordForm = new CreatePasswordForm();
+                passwordForm.init(MpkBdConnection, $"{id_pracownik}");
+                passwordForm.Show();
 
                 if (checkBox1.Checked)
                 {
