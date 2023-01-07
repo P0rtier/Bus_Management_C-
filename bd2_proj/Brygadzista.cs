@@ -16,18 +16,6 @@ namespace bd2_proj
 
         public void init(MySqlConnection connection)
         {
-            try
-            {
-                connection.Open();
-                string query = $"SET ROLE brygadzista_role;";
-                MySqlCommand mySqlCommand = new MySqlCommand(query, connection);
-                mySqlCommand.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            connection.Close();
 
             this.rozkladAdministratora1.init(connection, "brygadzista_rozklad_jazdy_administratora_view");
             this.rozkladBrygadzisty1.init(connection, "brygadzista_rozklad_jazdy_brygadzisty_view");

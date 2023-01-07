@@ -20,19 +20,6 @@ namespace bd2_proj
         {
             this.connection = connection;
 
-            try
-            {
-                connection.Open();
-                string query = $"SET ROLE kierowca_role;";
-                MySqlCommand mySqlCommand = new MySqlCommand(query, connection);
-                mySqlCommand.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            connection.Close();
-
             this.rozkladAdministratora1.init(connection, "kierowca_rozklad_jazdy_administratora_view");
 
             updateBrygadaDataGrid();

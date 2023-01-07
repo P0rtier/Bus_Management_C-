@@ -20,19 +20,6 @@ namespace bd2_proj
         {
             this.connections = connection;
 
-            try
-            {
-                connections.Open();
-                string query = $"SET ROLE administrator_role;";
-                MySqlCommand mySqlCommand = new MySqlCommand(query, connections);
-                mySqlCommand.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            connections.Close();
-
             string table = "administrator_rozklad_jazdy_administratora_view";
             string table2 = "administrator_pracownik_view";
             this.rozkladAdministratora1.init(connections, table);
