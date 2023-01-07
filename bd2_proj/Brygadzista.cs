@@ -13,15 +13,19 @@ namespace bd2_proj
 {
     public partial class Brygadzista : Form
     {
-        public Brygadzista()
-        {
-            InitializeComponent();
 
-            var connection = new MySqlConnection("datasource=localhost;port=3306;username=Brygadzista;password=123");
+        public void init(MySqlConnection connection)
+        {
             this.rozkladAdministratora1.init(connection, "brygadzista_rozklad_jazdy_administratora_view");
             this.rozkladBrygadzisty1.init(connection, "brygadzista_rozklad_jazdy_brygadzisty_view");
             this.brygady1.init(connection, "Brygadzista_brygada_view");
             this.pojazdy1.init(connection, "pojazd");
+        }
+
+
+        public Brygadzista()
+        {
+            InitializeComponent();
         }
 
         private void label1_Click(object sender, EventArgs e)

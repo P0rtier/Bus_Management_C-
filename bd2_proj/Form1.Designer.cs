@@ -33,9 +33,11 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.brygadzistaBtn = new System.Windows.Forms.Button();
             this.KierowcaBtn = new System.Windows.Forms.Button();
+            this.kierowcaLoginBtn = new System.Windows.Forms.Button();
+            this.brygadzistaLoginBtn = new System.Windows.Forms.Button();
+            this.administratorLoginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // administratorBtn
@@ -80,15 +82,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "hasło";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(63, 81);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "zaloguj";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // brygadzistaBtn
             // 
             this.brygadzistaBtn.Location = new System.Drawing.Point(483, 415);
@@ -109,14 +102,46 @@
             this.KierowcaBtn.UseVisualStyleBackColor = true;
             this.KierowcaBtn.Click += new System.EventHandler(this.KierowcaBtn_Click);
             // 
+            // kierowcaLoginBtn
+            // 
+            this.kierowcaLoginBtn.Location = new System.Drawing.Point(63, 72);
+            this.kierowcaLoginBtn.Name = "kierowcaLoginBtn";
+            this.kierowcaLoginBtn.Size = new System.Drawing.Size(154, 23);
+            this.kierowcaLoginBtn.TabIndex = 8;
+            this.kierowcaLoginBtn.Text = "zaloguj jako kierowca";
+            this.kierowcaLoginBtn.UseVisualStyleBackColor = true;
+            this.kierowcaLoginBtn.Click += new System.EventHandler(this.kierowcaLoginBtn_Click);
+            // 
+            // brygadzistaLoginBtn
+            // 
+            this.brygadzistaLoginBtn.Location = new System.Drawing.Point(63, 101);
+            this.brygadzistaLoginBtn.Name = "brygadzistaLoginBtn";
+            this.brygadzistaLoginBtn.Size = new System.Drawing.Size(154, 23);
+            this.brygadzistaLoginBtn.TabIndex = 9;
+            this.brygadzistaLoginBtn.Text = "zaloguj jako brygadzista";
+            this.brygadzistaLoginBtn.UseVisualStyleBackColor = true;
+            this.brygadzistaLoginBtn.Click += new System.EventHandler(this.brygadzistaLoginBtn_Click);
+            // 
+            // administratorLoginBtn
+            // 
+            this.administratorLoginBtn.Location = new System.Drawing.Point(63, 130);
+            this.administratorLoginBtn.Name = "administratorLoginBtn";
+            this.administratorLoginBtn.Size = new System.Drawing.Size(154, 23);
+            this.administratorLoginBtn.TabIndex = 10;
+            this.administratorLoginBtn.Text = "zaloguj jako administrator";
+            this.administratorLoginBtn.UseVisualStyleBackColor = true;
+            this.administratorLoginBtn.Click += new System.EventHandler(this.administratorLoginBtn_Click);
+            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.administratorLoginBtn);
+            this.Controls.Add(this.brygadzistaLoginBtn);
+            this.Controls.Add(this.kierowcaLoginBtn);
             this.Controls.Add(this.KierowcaBtn);
             this.Controls.Add(this.brygadzistaBtn);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
@@ -137,8 +162,10 @@
         private TextBox textBox2;
         private Label label1;
         private Label label2;
-        private Button button2;
         private Button brygadzistaBtn;
         private Button KierowcaBtn;
+        private Button kierowcaLoginBtn;
+        private Button brygadzistaLoginBtn;
+        private Button administratorLoginBtn;
     }
 }

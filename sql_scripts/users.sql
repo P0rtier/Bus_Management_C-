@@ -27,6 +27,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`brygadzista_brygada_view` TO 
 DROP USER IF EXISTS `Kierowca`;
 CREATE USER `Kierowca` IDENTIFIED BY '123';
 GRANT SELECT ON `mpk_bd2`.`pojazd` TO `Kierowca`;
+GRANT SELECT ON `mpk_bd2`.`kierowca` TO `Kierowca`;
 GRANT SELECT ON `mpk_bd2`.`cennik` TO `Kierowca`;
 GRANT SELECT ON `mpk_bd2`.`kierowca_brygada_view` TO `Kierowca`;
 GRANT SELECT ON `mpk_bd2`.`kierowca_rozklad_jazdy_brygadzisty_view` TO `Kierowca`;

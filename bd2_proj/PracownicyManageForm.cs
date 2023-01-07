@@ -211,69 +211,6 @@ namespace bd2_proj
             }
             return id;
         }
-
-        private void addRole(string table, int id)
-        {
-            if (roleID(table, id) != -1) return;
-            try
-            {
-                MpkBdConnection.Open();
-                string query = $"insert into `mpk_bd2`.`{table}` (id_pracownik) values({id});";
-                MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
-                mySqlCommand.ExecuteReader();
-                MessageBox.Show("Inserted Row!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            MpkBdConnection.Close();
-        }
-        private void removeRole(string table, int id)
-        {
-            if (roleID(table, id) == -1) return;
-            try
-            {
-                MpkBdConnection.Open();
-                string query = $"delete from `mpk_bd2`.`{table}` where id_pracownik={id};";
-                MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
-                mySqlCommand.ExecuteReader();
-                MessageBox.Show("Deleted Row!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            MpkBdConnection.Close();
-        }
-
-        private int roleID(string role, int user_id)
-        {
-            int id = -1;
-
-            var id_query = $"select * from `mpk_bd2`.`{role}` where id_pracownik = {user_id};";
-            var res = getQueryResult(id_query);
-
-            if (res.Rows.Count > 0)
-            {
-                id = Int32.Parse(res.Rows[0][0].ToString());
-            }
-
-            return id;
-        }
-
-        private int kierowcaID(int id)
-        {
-            return roleID("kierowca", id);
-        }
-        private int brygadzistaID(int id)
-        {
-            return roleID("brygadzista", id);
-        }
-        private int administratorID(int id)
-        {
-            return roleID("administrator", id);
-        }
        
 
         private void button1_Click(object sender, EventArgs e)
@@ -311,17 +248,17 @@ namespace bd2_proj
 
                 if (checkBox1.Checked)
                 {
-                    addRole("kierowca", id_pracownik);
+                    Roles.addRole(MpkBdConnection, "kierowca", id_pracownik);
                 }
 
                 if (checkBox2.Checked)
                 {
-                    addRole("brygadzista", id_pracownik);
+                    Roles.addRole(MpkBdConnection, "brygadzista", id_pracownik);
                 }
 
                 if (checkBox3.Checked)
                 {
-                    addRole("administrator", id_pracownik);
+                    Roles.addRole(MpkBdConnection, "administrator", id_pracownik);
                 }
             }
 
@@ -373,8 +310,8 @@ namespace bd2_proj
 
             var setRole = (string role, int id, bool set) =>
             {
-                if (set) addRole(role, id);
-                else removeRole(role, id);
+                if (set) Roles.addRole(MpkBdConnection, role, id);
+                else Roles.removeRole(MpkBdConnection, role, id);
             };
 
             setRole("kierowca", ID, checkBox1.Checked);
@@ -389,9 +326,9 @@ namespace bd2_proj
         {
             if (ID != 0)
             {
-                removeRole("kierowca", ID);
-                removeRole("brygadzista", ID);
-                removeRole("administrator", ID);
+                Roles.removeRole(MpkBdConnection, "kierowca", ID);
+                Roles.removeRole(MpkBdConnection, "brygadzista", ID);
+                Roles.removeRole(MpkBdConnection, "administrator", ID);
 
                 try
                 {

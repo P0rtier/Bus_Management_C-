@@ -15,19 +15,21 @@ namespace bd2_proj
     {
         MySqlConnection connections;
 
+
+        public void init(MySqlConnection connection)
+        {
+            this.connections = connection;
+
+            string table = "administrator_rozklad_jazdy_administratora_view";
+            string table2 = "administrator_pracownik_view";
+            this.rozkladAdministratora1.init(connections, table);
+            this.pracownicyAdminTab1.init(connections, table2);
+            this.adminAdressTab1.init(connections);
+        }
+
         public Administrator()
         {
             InitializeComponent();
-
-            string connection = "datasource=localhost;port=3306;database=mpk_bd2;username=Administrator;password=123";
-            connections = new MySqlConnection(connection);
-            string table = "administrator_rozklad_jazdy_administratora_view";
-            string table2 = "administrator_pracownik_view";
-            this.rozkladAdministratora1.init(new MySqlConnection(connection), table);
-            this.pracownicyAdminTab1.init(new MySqlConnection(connection), table2);
-            this.adminAdressTab1.init(connections);
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)

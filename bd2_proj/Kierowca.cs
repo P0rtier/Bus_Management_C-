@@ -16,15 +16,19 @@ namespace bd2_proj
     {
         MySqlConnection connection;
 
-        public Kierowca()
+        public void init(MySqlConnection connection)
         {
-            InitializeComponent();
+            this.connection = connection;
 
-            this.connection = new MySqlConnection("datasource=localhost;port=3306;username=Kierowca;password=123");
             this.rozkladAdministratora1.init(connection, "kierowca_rozklad_jazdy_administratora_view");
 
             updateBrygadaDataGrid();
             updateBrygadzistaTimetableDataGrid();
+        }
+
+        public Kierowca()
+        {
+            InitializeComponent();
         }
 
         private void updateBrygadaDataGrid()
