@@ -37,7 +37,6 @@ namespace bd2_proj
             kierowca.Show();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             launchAdminForm(createConnection("Administrator", "123"));
@@ -60,10 +59,11 @@ namespace bd2_proj
 
         private void kierowcaLoginBtn_Click(object sender, EventArgs e)
         {
-            var username = textBox1.Text;
-            var connection = createConnection("Kierowca", "123");
             try
             {
+                var username = textBox1.Text;
+                var password = textBox2.Text;
+                var connection = createConnection(username, password);
                 var id = Convert.ToInt32(username);
                 if (Roles.kierowcaID(connection, id) == -1)
                 {
@@ -72,15 +72,19 @@ namespace bd2_proj
                 }
                 launchKierowcaForm(connection);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("b³¹d logowania");
+            }
         }
 
         private void brygadzistaLoginBtn_Click(object sender, EventArgs e)
         {
-            var username = textBox1.Text;
-            var connection = createConnection("Brygadzista", "123");
             try
             {
+                var username = textBox1.Text;
+                var password = textBox2.Text;
+                var connection = createConnection(username, password);
                 var id = Convert.ToInt32(username);
                 if (Roles.brygadzistaID(connection, id) == -1)
                 {
@@ -89,15 +93,19 @@ namespace bd2_proj
                 }
                 launchBrygadzistaForm(connection);
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("b³¹d logowania");
+            }
         }
 
         private void administratorLoginBtn_Click(object sender, EventArgs e)
         {
-            var username = textBox1.Text;
-            var connection = createConnection("Administrator", "123");
             try
             {
+                var username = textBox1.Text;
+                var password = textBox2.Text;
+                var connection = createConnection(username, password);
                 var id = Convert.ToInt32(username);
                 if (Roles.administratorID(connection, id) == -1)
                 {
@@ -106,7 +114,10 @@ namespace bd2_proj
                 }
                 launchAdminForm(connection);
             }
-            catch (Exception ex){}    
+            catch (Exception ex)
+            {
+                MessageBox.Show("b³¹d logowania");
+            }
         }
     }
 }
