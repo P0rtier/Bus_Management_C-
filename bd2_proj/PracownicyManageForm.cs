@@ -364,6 +364,10 @@ namespace bd2_proj
                 clearData();
                 updateCennikGrid();
             }
+            else
+            {
+                MessageBox.Show("Wybierz rekord!");
+            }
         }
     }
 }

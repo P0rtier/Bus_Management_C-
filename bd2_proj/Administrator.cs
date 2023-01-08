@@ -25,6 +25,8 @@ namespace bd2_proj
             this.rozkladAdministratora1.init(connections, table);
             this.pracownicyAdminTab1.init(connections, table2);
             this.adminAdressTab1.init(connections);
+            this.adminManageBusLineTab1.init(connections);
+            this.adminManageBusStopTab1.init(connections);
         }
 
         public Administrator()
