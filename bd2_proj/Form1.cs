@@ -30,10 +30,10 @@ namespace bd2_proj
             brygadzista.Show();
         }
 
-        private void launchKierowcaForm(MySqlConnection connection)
+        private void launchKierowcaForm(MySqlConnection connection, int pracownik_id)
         {
             var kierowca = new Kierowca();
-            kierowca.init(connection);
+            kierowca.init(connection, pracownik_id);
             kierowca.Show();
         }
 
@@ -54,7 +54,7 @@ namespace bd2_proj
 
         private void KierowcaBtn_Click(object sender, EventArgs e)
         {
-            launchKierowcaForm(createConnection("Kierowca", "123"));
+            launchKierowcaForm(createConnection("Kierowca", "123"), -1);
         }
 
         private void kierowcaLoginBtn_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace bd2_proj
                     MessageBox.Show("u¿ytkownik o podanym loginie nie jest kierowc¹");
                     return;
                 }
-                launchKierowcaForm(connection);
+                launchKierowcaForm(connection, id);
             }
             catch (Exception ex) 
             {
