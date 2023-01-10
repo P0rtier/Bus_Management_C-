@@ -5,7 +5,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`rozklad_jazdy_brygadzisty` TO
 GRANT SELECT, INSERT, UPDATE, DELETE ON `mpk_bd2`.`fragment_kursu` TO brygadzista_role;
 GRANT SELECT ON `mpk_bd2`.`pojazd` TO brygadzista_role;
 GRANT SELECT ON `mpk_bd2`.`brygadzista` TO brygadzista_role;
-GRANT SELECT ON `mpk_bd2`.`kierowca` TO brygadzista_role;
+GRANT SELECT, UPDATE ON `mpk_bd2`.`kierowca` TO brygadzista_role;
 GRANT SELECT ON `mpk_bd2`.`cennik` TO brygadzista_role;
 GRANT SELECT ON `mpk_bd2`.`adres` TO brygadzista_role;
 GRANT SELECT ON `mpk_bd2`.`ulica` TO brygadzista_role;

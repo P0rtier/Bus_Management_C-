@@ -88,5 +88,12 @@ namespace bd2_proj
         {
             updateDataGrid();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var manage = new BrygadaManageForm();
+            manage.init(mySqlConnection);
+            manage.Show();
+        }
     }
 }
