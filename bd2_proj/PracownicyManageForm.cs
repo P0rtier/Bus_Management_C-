@@ -233,11 +233,10 @@ namespace bd2_proj
                 string query = $"insert into `mpk_bd2`.`pracownik` (imie, nazwisko, data_urodzenia, data_zatrudnienia, pesel, id_adres) values({(textBox1.Text == "" ? "NULL" : $"'{textBox1.Text}'")},{(textBox2.Text == "" ? "NULL" : $"'{textBox2.Text}'")},{(dateTimePicker1.Text == "" ? "NULL" : $"'{dateTimePicker1.Text}'")},{(dateTimePicker2.Text == "" ? "NULL" : $"'{dateTimePicker2.Text}'")}, {(textBox3.Text == "" ? "NULL" : $"'{textBox3.Text}'")}, {address_id});";
                 MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
                 mySqlCommand.ExecuteReader();
-                MessageBox.Show("Inserted Row!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("INSERT " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
             MpkBdConnection.Close();
 
@@ -304,8 +303,6 @@ namespace bd2_proj
             textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
             textBox6.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
             textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
-
-
         }
 
         private void update_Click(object sender, EventArgs e)
@@ -318,7 +315,6 @@ namespace bd2_proj
                 string query = $"update `mpk_bd2`.`pracownik` set imie = {(textBox1.Text == "" ? "NULL" : $"'{textBox1.Text}'")}, nazwisko= {(textBox2.Text == "" ? "NULL" : $"'{textBox2.Text}'")}, data_urodzenia= {(dateTimePicker1.Text == "" ? "NULL" : $"'{dateTimePicker1.Text}'")}, data_zatrudnienia = {(dateTimePicker2.Text == "" ? "NULL" : $"'{dateTimePicker2.Text}'")}, pesel= {(textBox3.Text == "" ? "NULL" : $"'{textBox3.Text}'")}, id_adres= {address_id} where id_pracownik={ID}";
                 MySqlCommand mySqlCommand = new MySqlCommand(query, MpkBdConnection);
                 mySqlCommand.ExecuteReader();
-                MessageBox.Show("Updated Row!");
             }
             catch (Exception ex)
             {
@@ -353,8 +349,6 @@ namespace bd2_proj
                     MpkBdConnection.Open();
                     MySqlCommand mySqlCommand = new MySqlCommand($"delete from `mpk_bd2`.`pracownik` where id_pracownik={ID};", MpkBdConnection);
                     mySqlCommand.ExecuteReader();
-                    MessageBox.Show("Row Deleted!");
-
                 }
                 catch (Exception ex)
                 {
