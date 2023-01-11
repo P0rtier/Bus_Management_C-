@@ -187,7 +187,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(871, 438);
             this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Linia autobuoswa";
+            this.tabPage1.Text = "Linia autobusowa";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // adminManageBusLineTab1
