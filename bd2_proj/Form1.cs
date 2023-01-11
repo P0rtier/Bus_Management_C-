@@ -16,10 +16,10 @@ namespace bd2_proj
             return new MySqlConnection(connection_string);
         }
 
-        private void launchAdminForm(MySqlConnection connection)
+        private void launchAdminForm(MySqlConnection connection, int pracownik_id)
         {
             var admin = new Administrator();
-            admin.init(connection);
+            admin.init(connection, pracownik_id);
             admin.Show();
         }
 
@@ -97,7 +97,7 @@ namespace bd2_proj
                     MessageBox.Show("u¿ytkownik o podanym loginie nie jest administratorem");
                     return;
                 }
-                launchAdminForm(connection);
+                launchAdminForm(connection, id);
             }
             catch (Exception ex)
             {

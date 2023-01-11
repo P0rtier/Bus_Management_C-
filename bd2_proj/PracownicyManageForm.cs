@@ -17,14 +17,17 @@ namespace bd2_proj
     {
         private string table = "administrator_pracownik_view";
         MySqlConnection MpkBdConnection;
+        int user_id = 0;
+
         int ID = 0;
         int ID_kierowca = 0;
         int ID_brygadzista = 0;
         int ID_administrator = 0;
 
-        public void init(MySqlConnection MpkBdConnection)
+        public void init(MySqlConnection MpkBdConnection, int user_id)
         {
             this.MpkBdConnection = MpkBdConnection;
+            this.user_id = user_id;
             updateCennikGrid();
         }
 
@@ -307,6 +310,11 @@ namespace bd2_proj
 
         private void update_Click(object sender, EventArgs e)
         {
+            if(!checkBox3.Checked && ID == user_id)
+            {
+                MessageBox.Show("nie możesz pozbawić samego siebie uprawnień administracyjnych");
+                return;
+            }
             try
             {
                 var address_id = adressID();

@@ -16,11 +16,13 @@ namespace bd2_proj
 
         private string table;
         private MySqlConnection mySqlConnection;
+        private int pracownik_id = 0;
 
-        public void init(MySqlConnection mySqlConnection, string table)
+        public void init(MySqlConnection mySqlConnection, string table, int pracownik_id)
         {
             this.mySqlConnection = mySqlConnection;
             this.table= table;
+            this.pracownik_id = pracownik_id;
 
             try
             {
@@ -110,7 +112,7 @@ namespace bd2_proj
         private void button1_Click(object sender, EventArgs e)
         {
             var manage = new PracownicyManageForm();
-            manage.init(mySqlConnection);
+            manage.init(mySqlConnection, pracownik_id);
             manage.Show();
         }
 

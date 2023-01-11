@@ -16,14 +16,14 @@ namespace bd2_proj
         MySqlConnection connections;
 
 
-        public void init(MySqlConnection connection)
+        public void init(MySqlConnection connection, int pracownik_id)
         {
             this.connections = connection;
 
             string table = "administrator_rozklad_jazdy_administratora_view";
             string table2 = "administrator_pracownik_view";
             this.rozkladAdministratora1.init(connections, table);
-            this.pracownicyAdminTab1.init(connections, table2);
+            this.pracownicyAdminTab1.init(connections, table2, pracownik_id);
             this.adminAdressTab1.init(connections);
             this.adminManageBusLineTab1.init(connections);
             this.adminManageBusStopTab1.init(connections);
