@@ -14,11 +14,13 @@ namespace bd2_proj
     public partial class Administrator : Form
     {
         MySqlConnection connections;
+        int pracownik_id = 0;
 
 
         public void init(MySqlConnection connection, int pracownik_id)
         {
             this.connections = connection;
+            this.pracownik_id = pracownik_id;
 
             string table = "administrator_rozklad_jazdy_administratora_view";
             string table2 = "administrator_pracownik_view";
@@ -41,7 +43,9 @@ namespace bd2_proj
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var manageAdminTimetable = new AdminManageAdminTimetable();
+            manageAdminTimetable.init(connections, pracownik_id);
+            manageAdminTimetable.Show();
         }
 
         private void rozkladAdministratora1_Load(object sender, EventArgs e)
